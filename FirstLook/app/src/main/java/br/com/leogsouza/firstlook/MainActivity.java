@@ -20,10 +20,18 @@ public class MainActivity extends AppCompatActivity {
         mTextView = findViewById(R.id.mTextView);
 
         mButton.setText(R.string.button_name);
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.setVisibility(View.VISIBLE);
+                mTextView.setText(R.string.show_text);
+            }
+        });
     }
 
-    public void ShowMe(View view) {
-        mTextView.setVisibility(View.VISIBLE);
-        mTextView.setText(R.string.show_text);
-    }
+//    public void ShowMe(View view) {
+//        mTextView.setVisibility(View.VISIBLE);
+//        mTextView.setText(R.string.show_text);
+//    }
 }
