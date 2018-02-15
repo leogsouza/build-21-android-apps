@@ -10,7 +10,7 @@
         android:id="@+id/mTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Hello world!"
         android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,20 +35,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.44" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="175dp"
-        android:layout_height="117dp"
-        android:layout_marginBottom="24dp"
+    <EditText
+        android:id="@+id/mEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:scaleType="fitXY"
+        android:ems="10"
+        android:hint="Enter Your Name"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/mButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintVertical_bias="0.825" />
 
 </android.support.constraint.ConstraintLayout>
