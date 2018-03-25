@@ -1,5 +1,6 @@
 package br.com.leogsouza.petbio;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,11 +30,19 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         switch (view.getId()) {
             case R.id.catID:
                 // go to second activity
-                Toast.makeText(MainActivity.this, "Cat", Toast.LENGTH_LONG).show();
+                Intent catIntent = new Intent(MainActivity.this, BioActivity.class);
+                catIntent.putExtra("name", "Tom");
+                catIntent.putExtra("bio", "Great cat. Loves people and meows a lot!");
+                startActivity(catIntent);
+                //Toast.makeText(MainActivity.this, "Cat", Toast.LENGTH_LONG).show();
                 break;
             case R.id.dogID:
                 // go to second activity
-                Toast.makeText(MainActivity.this, "Dog", Toast.LENGTH_LONG).show();
+                Intent dogIntent = new Intent(MainActivity.this, BioActivity.class);
+                dogIntent.putExtra("name", "Thor");
+                dogIntent.putExtra("bio", "Great dog. Loves people and barks and eats a lot!");
+                startActivity(dogIntent);
+                //Toast.makeText(MainActivity.this, "Dog", Toast.LENGTH_LONG).show();
                 break;
         }
     }
