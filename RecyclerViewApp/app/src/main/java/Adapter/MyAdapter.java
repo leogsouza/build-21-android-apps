@@ -37,6 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         ListItem item = listItems.get(position);
         holder.name.setText(item.getName());
         holder.description.setText(item.getDescription());
+        holder.rating.setText(item.getRating());
     }
 
     @Override
@@ -47,12 +48,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView name;
         public TextView description;
+        public TextView rating;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.description);
+            rating = itemView.findViewById(R.id.rating);
         }
     }
 }
