@@ -4,6 +4,6 @@
     <item android:drawable="@drawable/b_1" android:duration="80" />
     <item android:drawable="@drawable/b_2" android:duration="80" />
     <item android:drawable="@drawable/b_3" android:duration="80" />
-    <item android:drawable="@drawable/b_4" android:duration="80" />
+    <!--<item android:drawable="@drawable/b_4" android:duration="80" />-->
 
 </animation-list>
