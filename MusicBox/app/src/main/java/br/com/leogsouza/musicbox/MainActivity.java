@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.prevButton:
-
+                backMusic();
                 break;
             case R.id.playButton:
                 if (mediaPlayer.isPlaying()) {
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.nextButton:
-
+                nextMusic();
                 break;
 
         }
@@ -113,6 +113,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mediaPlayer.start();
             updateThread();
             playButton.setBackgroundResource(android.R.drawable.ic_media_pause);
+        }
+    }
+
+    public void backMusic() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.seekTo(0);
+        }
+    }
+
+    public void nextMusic() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.seekTo(mediaPlayer.getDuration() - 1000);
         }
     }
 
@@ -147,5 +159,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         thread.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        thread.interrupt();
+        thread = null;
+
+        super.onDestroy();
     }
 }
