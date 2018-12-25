@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button playButton;
     private Button nextButton;
 
+    private Thread thread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +111,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void startMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.start();
+            updateThread();
             playButton.setBackgroundResource(android.R.drawable.ic_media_pause);
         }
+    }
+
+    public void updateThread() {
+        thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                        Thread.sleep(50);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                int newPosition = mediaPlayer.getCurrentPosition();
+                                int newDuration = mediaPlayer.getDuration();
+
+                                seekBar.setMax(newDuration);
+                                seekBar.setProgress(newPosition);
+
+                                // update the time text
+                                leftTime.setText(new SimpleDateFormat("mm:ss")
+                                    .format(new Date(newPosition)));
+                                rightTime.setText(new SimpleDateFormat("mm:ss")
+                                    .format(new Date(newDuration - newPosition)));
+                            }
+                        });
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 }
