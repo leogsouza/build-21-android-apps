@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Shared Prefs</string>
+    <string name="enter_name">Enter Something</string>
 </resources>
