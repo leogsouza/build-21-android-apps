@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
     public DatabaseHandler(Context context ) {
         super(context, Util.DATABASE_NAME, null, Util.DATABASE_VERSION);
@@ -59,5 +62,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(1), cursor.getString(2));
 
         return contact;
+    }
+
+    // Get all contacts
+    public List<Contact> getAllContacts() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<Contact> contactList = new ArrayList<>();
+
+        // Select all contacts
+        String selectAll = "SELECT * FROM " + Util.TABLE_NAME;
+        Cursor cursor = db.rawQuery(selectAll, null);
+
+        // Loop through our contacts
+        if (cursor.moveToFirst()) {
+            do {
+                Contact contact = new Contact();
+                contact.setId(Integer.parseInt(cursor.getString(0)));
+                contact.setName(cursor.getString(1));
+                contact.setPhoneNumber(cursor.getString(2));
+
+                contactList.add(contact);
+            } while (cursor.moveToNext());
+        }
+
+        return contactList;
     }
 }
